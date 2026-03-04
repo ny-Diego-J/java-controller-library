@@ -24,7 +24,4 @@ public class Color {
     public static final String BOLD = "\u001B[1m";
     public static final String UNDERLINE = "\u001B[4m";
 
-    public void printError(String text){
-        System.out.println(RED + text + RESET);
-    }
 }

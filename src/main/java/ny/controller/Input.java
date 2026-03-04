@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Input {
     private final Scanner input = new Scanner(System.in);
-    private final Color color = new Color();
+    private final Print print = new Print();
 
     /**
      * Gets String input and returns it
@@ -41,7 +41,7 @@ public class Input {
             try {
                 return Integer.parseInt(s.trim());
             } catch (NumberFormatException e) {
-                color.printError("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -61,7 +61,7 @@ public class Input {
             try {
                 return Integer.parseInt(s.trim());
             } catch (NumberFormatException e) {
-                color.printError("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -80,7 +80,7 @@ public class Input {
             try {
                 return getInt(min, max);
             } catch (NumberFormatException e) {
-                color.printError("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -101,7 +101,7 @@ public class Input {
             try {
                 return getInt(min, max);
             } catch (NumberFormatException e) {
-                color.printError("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -131,7 +131,7 @@ public class Input {
             try {
                 return getInt(min, max);
             } catch (NumberFormatException e) {
-                color.printError(error);
+                print.printError(error);
             }
         }
     }
@@ -152,7 +152,7 @@ public class Input {
             try {
                 return Integer.parseInt(s.trim());
             } catch (NumberFormatException e) {
-                color.printError(error);
+                print.printError(error);
             }
         }
     }
@@ -170,7 +170,7 @@ public class Input {
             try {
                 return Double.parseDouble(s.trim());
             } catch (NumberFormatException e) {
-                color.printError("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -190,7 +190,7 @@ public class Input {
             try {
                 return Double.parseDouble(s.trim());
             } catch (NumberFormatException e) {
-                color.printError("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -212,7 +212,7 @@ public class Input {
             try {
                 return Double.parseDouble(s.trim());
             } catch (NumberFormatException e) {
-                color.printError(error);
+                print.printError(error);
             }
         }
     }
@@ -232,7 +232,7 @@ public class Input {
             try {
                 return Float.parseFloat(s.trim());
             } catch (NumberFormatException e) {
-                color.printError("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -253,7 +253,7 @@ public class Input {
             try {
                 return Float.parseFloat(s.trim());
             } catch (NumberFormatException e) {
-                color.printError("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -276,7 +276,7 @@ public class Input {
             try {
                 return Float.parseFloat(s.trim());
             } catch (NumberFormatException e) {
-                color.printError(error);
+                print.printError(error);
             }
         }
     }
@@ -293,7 +293,7 @@ public class Input {
             try {
                 return getBoolean();
             } catch (IllegalArgumentException e) {
-                color.printError("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -312,7 +312,7 @@ public class Input {
             try {
                 return getBoolean();
             } catch (IllegalArgumentException e) {
-                color.printError("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -332,7 +332,7 @@ public class Input {
             try {
                 return getBoolean();
             } catch (IllegalArgumentException e) {
-                color.printError(error);
+                print.printError(error);
             }
         }
     }
