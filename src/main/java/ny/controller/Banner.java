@@ -1,7 +1,7 @@
 package ny.controller;
 
 
-public class Banner { //TODO: add documentation
+public class Banner {
     private final Input input = new Input();
 
     /**
