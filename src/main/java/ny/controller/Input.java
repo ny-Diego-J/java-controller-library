@@ -13,7 +13,7 @@ public class Input {
      * @return String that got inputted by user
      */
     public String readString(String prompt) {
-        System.out.print(prompt);
+        print.printClear(prompt);
         return input.nextLine();
     }
 
@@ -41,7 +41,7 @@ public class Input {
             try {
                 return Integer.parseInt(s.trim());
             } catch (NumberFormatException e) {
-                print.printError("Enter a valid number!");
+                print.printErrorln("Enter a valid number!");
             }
         }
     }
@@ -56,12 +56,12 @@ public class Input {
      */
     public int readInt(String prompt) {
         while (true) {
-            System.out.print(prompt);
+            print.printClear(prompt);
             String s = input.nextLine();
             try {
                 return Integer.parseInt(s.trim());
             } catch (NumberFormatException e) {
-                print.printError("Enter a valid number!");
+                print.printErrorln("Enter a valid number!");
             }
         }
     }
@@ -80,7 +80,7 @@ public class Input {
             try {
                 return getInt(min, max);
             } catch (NumberFormatException e) {
-                print.printError("Enter a valid number!");
+                print.printErrorln("Enter a valid number!");
             }
         }
     }
@@ -97,11 +97,11 @@ public class Input {
      */
     public int readInt(String prompt, int min, int max) {
         while (true) {
-            System.out.print(prompt);
+            print.printClear(prompt);
             try {
                 return getInt(min, max);
             } catch (NumberFormatException e) {
-                print.printError("Enter a valid number!");
+                print.printErrorln("Enter a valid number!");
             }
         }
     }
@@ -127,11 +127,11 @@ public class Input {
      */
     public int readInt(String prompt, String error, int min, int max) {
         while (true) {
-            System.out.print(prompt);
+            print.printClear(prompt);
             try {
                 return getInt(min, max);
             } catch (NumberFormatException e) {
-                print.printError(error);
+                print.printErrorln(error);
             }
         }
     }
@@ -147,12 +147,12 @@ public class Input {
      */
     public int readInt(String prompt, String error) {
         while (true) {
-            System.out.print(prompt);
+            print.printClear(prompt);
             String s = input.nextLine();
             try {
                 return Integer.parseInt(s.trim());
             } catch (NumberFormatException e) {
-                print.printError(error);
+                print.printErrorln(error);
             }
         }
     }
@@ -170,7 +170,7 @@ public class Input {
             try {
                 return Double.parseDouble(s.trim());
             } catch (NumberFormatException e) {
-                print.printError("Enter a valid number!");
+                print.printErrorln("Enter a valid number!");
             }
         }
     }
@@ -185,12 +185,12 @@ public class Input {
      */
     public Double readDouble(String prompt) {
         while (true) {
-            System.out.print(prompt);
+            print.printClear(prompt);
             String s = input.nextLine();
             try {
                 return Double.parseDouble(s.trim());
             } catch (NumberFormatException e) {
-                print.printError("Enter a valid number!");
+                print.printErrorln("Enter a valid number!");
             }
         }
     }
@@ -207,12 +207,12 @@ public class Input {
 
     public double readDouble(String prompt, String error) {
         while (true) {
-            System.out.print(prompt);
+            print.printClear(prompt);
             String s = input.nextLine();
             try {
                 return Double.parseDouble(s.trim());
             } catch (NumberFormatException e) {
-                print.printError(error);
+                print.printErrorln(error);
             }
         }
     }
@@ -232,7 +232,7 @@ public class Input {
             try {
                 return Float.parseFloat(s.trim());
             } catch (NumberFormatException e) {
-                print.printError("Enter a valid number!");
+                print.printErrorln("Enter a valid number!");
             }
         }
     }
@@ -248,12 +248,12 @@ public class Input {
 
     public float readFloat(String prompt) {
         while (true) {
-            System.out.print(prompt);
+            print.printClear(prompt);
             String s = input.nextLine();
             try {
                 return Float.parseFloat(s.trim());
             } catch (NumberFormatException e) {
-                print.printError("Enter a valid number!");
+                print.printErrorln("Enter a valid number!");
             }
         }
     }
@@ -271,12 +271,12 @@ public class Input {
 
     public float readFloat(String prompt, String error) {
         while (true) {
-            System.out.print(prompt);
+            print.printClear(prompt);
             String s = input.nextLine();
             try {
                 return Float.parseFloat(s.trim());
             } catch (NumberFormatException e) {
-                print.printError(error);
+                print.printErrorln(error);
             }
         }
     }
@@ -293,7 +293,7 @@ public class Input {
             try {
                 return getBoolean();
             } catch (IllegalArgumentException e) {
-                print.printError("Enter a valid number!");
+                print.printErrorln("Enter a valid number!");
             }
         }
     }
@@ -308,11 +308,11 @@ public class Input {
      */
     public boolean readBoolean(String prompt) {
         while (true) {
-            System.out.println(prompt);
+            print.printClearln(prompt);
             try {
                 return getBoolean();
             } catch (IllegalArgumentException e) {
-                print.printError("Enter a valid number!");
+                print.printErrorln("Enter a valid number!");
             }
         }
     }
@@ -328,11 +328,11 @@ public class Input {
      */
     public boolean readBoolean(String prompt, String error) {
         while (true) {
-            System.out.println(prompt);
+            print.printClearln(prompt);
             try {
                 return getBoolean();
             } catch (IllegalArgumentException e) {
-                print.printError(error);
+                print.printErrorln(error);
             }
         }
     }
