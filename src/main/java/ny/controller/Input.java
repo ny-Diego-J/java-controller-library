@@ -13,7 +13,7 @@ public class Input {
      * @return String that got inputted by user
      */
     public String readString(String prompt) {
-        print.printClear(prompt);
+        print.print(prompt);
         return input.nextLine();
     }
 
@@ -56,7 +56,7 @@ public class Input {
      */
     public int readInt(String prompt) {
         while (true) {
-            print.printClear(prompt);
+            print.print(prompt);
             String s = input.nextLine();
             try {
                 return Integer.parseInt(s.trim());
@@ -97,7 +97,7 @@ public class Input {
      */
     public int readInt(String prompt, int min, int max) {
         while (true) {
-            print.printClear(prompt);
+            print.print(prompt);
             try {
                 return getInt(min, max);
             } catch (NumberFormatException e) {
@@ -127,7 +127,7 @@ public class Input {
      */
     public int readInt(String prompt, String error, int min, int max) {
         while (true) {
-            print.printClear(prompt);
+            print.print(prompt);
             try {
                 return getInt(min, max);
             } catch (NumberFormatException e) {
@@ -147,7 +147,7 @@ public class Input {
      */
     public int readInt(String prompt, String error) {
         while (true) {
-            print.printClear(prompt);
+            print.print(prompt);
             String s = input.nextLine();
             try {
                 return Integer.parseInt(s.trim());
@@ -185,7 +185,7 @@ public class Input {
      */
     public Double readDouble(String prompt) {
         while (true) {
-            print.printClear(prompt);
+            print.print(prompt);
             String s = input.nextLine();
             try {
                 return Double.parseDouble(s.trim());
@@ -207,7 +207,7 @@ public class Input {
 
     public double readDouble(String prompt, String error) {
         while (true) {
-            print.printClear(prompt);
+            print.print(prompt);
             String s = input.nextLine();
             try {
                 return Double.parseDouble(s.trim());
@@ -248,7 +248,7 @@ public class Input {
 
     public float readFloat(String prompt) {
         while (true) {
-            print.printClear(prompt);
+            print.print(prompt);
             String s = input.nextLine();
             try {
                 return Float.parseFloat(s.trim());
@@ -271,7 +271,7 @@ public class Input {
 
     public float readFloat(String prompt, String error) {
         while (true) {
-            print.printClear(prompt);
+            print.print(prompt);
             String s = input.nextLine();
             try {
                 return Float.parseFloat(s.trim());
@@ -308,7 +308,7 @@ public class Input {
      */
     public boolean readBoolean(String prompt) {
         while (true) {
-            print.printClearln(prompt);
+            print.println(prompt);
             try {
                 return getBoolean();
             } catch (IllegalArgumentException e) {
@@ -328,7 +328,7 @@ public class Input {
      */
     public boolean readBoolean(String prompt, String error) {
         while (true) {
-            print.printClearln(prompt);
+            print.println(prompt);
             try {
                 return getBoolean();
             } catch (IllegalArgumentException e) {

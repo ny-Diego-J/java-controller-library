@@ -23,7 +23,7 @@ public class Banner {
      * @return user input
      */
     public int getBannerChoice(String header, String[] options) {
-        print.printClearln(header);
+        print.println(header);
         printBanner(options);
         return input.readInt("Wähle eine Option: ");
     }
@@ -48,7 +48,7 @@ public class Banner {
      * @return user input
      */
     public int getBannerChoice(String title, String[] options, String prompt) {
-        print.printClearln(title);
+        print.println(title);
         printBanner(options);
         return input.readInt(prompt);
     }
@@ -60,7 +60,7 @@ public class Banner {
      */
     public void printBanner(String[] options) {
         for (int i = 0; i < options.length; i++) {
-            print.printClearln((i + 1) + ". " + options[i]);
+            print.println((i + 1) + ". " + options[i]);
         }
     }
 }
