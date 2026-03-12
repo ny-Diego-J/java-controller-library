@@ -1,9 +1,12 @@
 package ny.controller;
 
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Input {
-    private final Scanner input = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
     private final Print print = new Print();
 
     /**
@@ -14,7 +17,7 @@ public class Input {
      */
     public String readString(String prompt) {
         print.print(prompt);
-        return input.nextLine();
+        return sc.nextLine();
     }
 
 
@@ -24,7 +27,151 @@ public class Input {
      * @return String that got inputted by user
      */
     public String readString() {
-        return input.nextLine();
+        return sc.nextLine();
+    }
+
+
+    /**
+     * Gets string and returns it if is valid. If not it repeats the process
+     * @return valid mail
+     */
+    public String readEmail() {
+        while (true) {
+            boolean isValid = true;
+            String input = sc.nextLine();
+
+            String[] atParts = input.split("@", 2);
+            if (atParts.length != 2) {
+                print.printError("Invalid email: no @ found!");
+                isValid = false;
+            }
+
+            String first = atParts[0];
+            String last = atParts[1];
+
+            if (first.isEmpty()) {
+                print.printError("invalid mail!");
+                isValid = false;
+            }
+
+            String[] dotParts = last.split("\\.", 2);
+            if (dotParts.length != 2) {
+                print.printError("Ungültig: no domain ending!");
+                isValid = false;
+            }
+
+            if (dotParts[0].isEmpty()) {
+                print.printError("Invalid domain!");
+                isValid = false;
+            }
+
+            if (dotParts[1].isEmpty() || dotParts[1].length() > 3) {
+                print.printError("Invalid length!");
+                isValid = false;
+            }
+            if (isValid) return input;
+        }
+    }
+
+    /**
+     * Gets string and returns it if is valid. If not it repeats the process
+     * @param prompt prompt to print bevor the input is taken
+     * @return valid mail
+     */
+    public String readEmail(String prompt) {
+        while (true) {
+            boolean isValid = true;
+            print.print(prompt);
+            String input = sc.nextLine();
+            String[] atParts = input.split("@", 2);
+            if (atParts.length != 2) {
+                print.printError("Invalid email: no @ found!");
+                isValid = false;
+            }
+
+            String first = atParts[0];
+            String last = atParts[1];
+
+            if (first.isEmpty()) {
+                print.printError("invalid mail!");
+                isValid = false;
+            }
+
+            String[] dotParts = last.split("\\.", 2);
+            if (dotParts.length != 2) {
+                print.printError("Ungültig: no domain ending!");
+                isValid = false;
+            }
+
+            if (dotParts[0].isEmpty()) {
+                print.printError("Invalid domain!");
+                isValid = false;
+            }
+
+            if (dotParts[1].isEmpty() || dotParts[1].length() > 3) {
+                print.printError("Invalid length!");
+                isValid = false;
+            }
+            if (isValid) return input;
+        }
+    }
+
+    /**
+     * reads a date and validates if it's true. If so it returns the Date
+     * It uses the default format dd.mm.yyyy. it always prints the current format
+     * bevor it taks the input.
+     * @return valid LocalDate
+     */
+    public LocalDate readDate() {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.mm.yyyy");
+        while (true) {
+            try {
+                print.print("(dd.mm.yyyy");
+                String input = sc.nextLine();
+                return LocalDate.parse(input, format);
+            } catch (DateTimeParseException e) {
+                print.printError("Enter a valid number!");
+            }
+        }
+    }
+
+    /**
+     * reads a date and validates if it's true. If so it returns the Date
+     * It uses the default format dd.mm.yyyy.
+     * @param prompt promt to print bevor input is taken
+     * @return valid LocalDate
+     */
+    public LocalDate readDate(String prompt) {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.mm.yyyy");
+        while (true) {
+            try {
+                System.out.print(prompt + "(dd.mm.yyyy");
+                String input = sc.nextLine();
+                return LocalDate.parse(input, format);
+            } catch (DateTimeParseException e) {
+                print.printError("Enter a valid number!");
+            }
+        }
+    }
+
+    /**
+     * reads a date and validates if it's true. If so it returns the Date
+     * It uses the default format dd.mm.yyyy.
+     * @param prompt promt to print bevor input is taken
+     * @param formatting format of the input
+     * @return valid LocalDate
+     */
+    public LocalDate readDate(String prompt, String formatting) {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern(formatting);
+        while (true) {
+            try {
+                System.out.print(prompt + "(" + formatting + ")");
+                String input = sc.nextLine();
+                return LocalDate.parse(input, format);
+            } catch (DateTimeParseException e) {
+                print.printError("Enter a valid number!");
+            }
+        }
     }
 
 
@@ -37,11 +184,11 @@ public class Input {
      */
     public int readInt() {
         while (true) {
-            String s = input.nextLine();
+            String s = sc.nextLine();
             try {
                 return Integer.parseInt(s.trim());
             } catch (NumberFormatException e) {
-                print.printErrorln("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -57,11 +204,11 @@ public class Input {
     public int readInt(String prompt) {
         while (true) {
             print.print(prompt);
-            String s = input.nextLine();
+            String s = sc.nextLine();
             try {
                 return Integer.parseInt(s.trim());
             } catch (NumberFormatException e) {
-                print.printErrorln("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -80,7 +227,7 @@ public class Input {
             try {
                 return getInt(min, max);
             } catch (NumberFormatException e) {
-                print.printErrorln("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -101,13 +248,13 @@ public class Input {
             try {
                 return getInt(min, max);
             } catch (NumberFormatException e) {
-                print.printErrorln("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
 
     private int getInt(int min, int max) {
-        String s = input.nextLine();
+        String s = sc.nextLine();
         int i = Integer.parseInt(s.trim());
         if (i >= min && i <= max) {
             return i;
@@ -131,7 +278,7 @@ public class Input {
             try {
                 return getInt(min, max);
             } catch (NumberFormatException e) {
-                print.printErrorln(error);
+                print.printError(error);
             }
         }
     }
@@ -148,11 +295,11 @@ public class Input {
     public int readInt(String prompt, String error) {
         while (true) {
             print.print(prompt);
-            String s = input.nextLine();
+            String s = sc.nextLine();
             try {
                 return Integer.parseInt(s.trim());
             } catch (NumberFormatException e) {
-                print.printErrorln(error);
+                print.printError(error);
             }
         }
     }
@@ -166,11 +313,11 @@ public class Input {
      */
     public Double readDouble() {
         while (true) {
-            String s = input.nextLine();
+            String s = sc.nextLine();
             try {
                 return Double.parseDouble(s.trim());
             } catch (NumberFormatException e) {
-                print.printErrorln("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -186,11 +333,11 @@ public class Input {
     public Double readDouble(String prompt) {
         while (true) {
             print.print(prompt);
-            String s = input.nextLine();
+            String s = sc.nextLine();
             try {
                 return Double.parseDouble(s.trim());
             } catch (NumberFormatException e) {
-                print.printErrorln("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -208,11 +355,11 @@ public class Input {
     public double readDouble(String prompt, String error) {
         while (true) {
             print.print(prompt);
-            String s = input.nextLine();
+            String s = sc.nextLine();
             try {
                 return Double.parseDouble(s.trim());
             } catch (NumberFormatException e) {
-                print.printErrorln(error);
+                print.printError(error);
             }
         }
     }
@@ -228,11 +375,11 @@ public class Input {
 
     public float readFloat() {
         while (true) {
-            String s = input.nextLine();
+            String s = sc.nextLine();
             try {
                 return Float.parseFloat(s.trim());
             } catch (NumberFormatException e) {
-                print.printErrorln("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -249,11 +396,11 @@ public class Input {
     public float readFloat(String prompt) {
         while (true) {
             print.print(prompt);
-            String s = input.nextLine();
+            String s = sc.nextLine();
             try {
                 return Float.parseFloat(s.trim());
             } catch (NumberFormatException e) {
-                print.printErrorln("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -272,11 +419,11 @@ public class Input {
     public float readFloat(String prompt, String error) {
         while (true) {
             print.print(prompt);
-            String s = input.nextLine();
+            String s = sc.nextLine();
             try {
                 return Float.parseFloat(s.trim());
             } catch (NumberFormatException e) {
-                print.printErrorln(error);
+                print.printError(error);
             }
         }
     }
@@ -293,7 +440,7 @@ public class Input {
             try {
                 return getBoolean();
             } catch (IllegalArgumentException e) {
-                print.printErrorln("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -308,11 +455,11 @@ public class Input {
      */
     public boolean readBoolean(String prompt) {
         while (true) {
-            print.println(prompt);
+            print.print(prompt);
             try {
                 return getBoolean();
             } catch (IllegalArgumentException e) {
-                print.printErrorln("Enter a valid number!");
+                print.printError("Enter a valid number!");
             }
         }
     }
@@ -328,21 +475,24 @@ public class Input {
      */
     public boolean readBoolean(String prompt, String error) {
         while (true) {
-            print.println(prompt);
+            print.print(prompt);
             try {
                 return getBoolean();
             } catch (IllegalArgumentException e) {
-                print.printErrorln(error);
+                print.printError(error);
             }
         }
     }
 
+    /**
+     * checks if the value ist valid for a boolean
+     * @return if the input is true or false
+     */
     private boolean getBoolean() {
-        String s = input.nextLine().trim().toLowerCase();
-        return switch (s) {
-            case "y", "yes", "true", "1" -> true;
-            case "n", "no", "false", "0" -> false;
-            // Wenn nichts passt, werfen wir eine Exception, die oben gefangen wird
+        String s = sc.nextLine().trim().toLowerCase();
+        return switch (s.toLowerCase()) {
+            case "y", "yes", "true", "1", "positive" -> true;
+            case "n", "no", "false", "0", "negative" -> false;
             default -> throw new IllegalArgumentException();
         };
     }
