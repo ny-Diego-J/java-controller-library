@@ -1,5 +1,7 @@
 package ny.controller;
 
+import ny.controller.Exeptions.InvalidConsoleException;
+
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -30,6 +32,44 @@ public class Input {
         return sc.nextLine();
     }
 
+
+    /**
+     * reads in a hidden password
+     * @return password string
+     */
+    public String readPassword() {
+        try {
+            char[] string = System.console().readPassword();
+            StringBuilder sb = new StringBuilder();
+            for (char c : string) {
+                sb.append(c);
+            }
+            return sb.toString();
+        } catch (NullPointerException e) {
+            print.printError("You can't use this command in the IDE");
+            throw new InvalidConsoleException();
+        }
+    }
+
+    /**
+     * reads in a hidden password
+     * @param prompt prompt to print bevor the input is taken
+     * @return password string
+     */
+    public String readPassword(String prompt) {
+        try {
+            print.print(prompt);
+            char[] string = System.console().readPassword();
+            StringBuilder sb = new StringBuilder();
+            for (char c : string) {
+                sb.append(c);
+            }
+            return sb.toString();
+        } catch (NullPointerException e) {
+            print.printError("\nYou can't use this command in the IDE");
+            throw new InvalidConsoleException();
+        }
+    }
 
     /**
      * Gets string and returns it if is valid. If not it repeats the process
