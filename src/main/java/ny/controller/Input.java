@@ -126,7 +126,7 @@ public class Input {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.mm.yyyy");
         while (true) {
             try {
-                print.print("(dd.mm.yyyy");
+                print.print("(dd.mm.yyyy): ");
                 String input = sc.nextLine();
                 return LocalDate.parse(input, format);
             } catch (DateTimeParseException e) {
@@ -142,10 +142,10 @@ public class Input {
      * @return valid LocalDate
      */
     public LocalDate readDate(String prompt) {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.mm.yyyy");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         while (true) {
             try {
-                System.out.print(prompt + "(dd.mm.yyyy");
+                System.out.print(prompt + "(dd.mm.yyyy): ");
                 String input = sc.nextLine();
                 return LocalDate.parse(input, format);
             } catch (DateTimeParseException e) {
@@ -165,7 +165,7 @@ public class Input {
         DateTimeFormatter format = DateTimeFormatter.ofPattern(formatting);
         while (true) {
             try {
-                System.out.print(prompt + "(" + formatting + ")");
+                System.out.print(prompt + "(" + formatting + "): ");
                 String input = sc.nextLine();
                 return LocalDate.parse(input, format);
             } catch (DateTimeParseException e) {
