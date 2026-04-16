@@ -1,6 +1,8 @@
 package ny.controller;
 
+import ny.Controller;
 import ny.controller.Exeptions.InvalidConsoleException;
+import ny.controller.Exeptions.MinorAgeException;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -32,6 +34,96 @@ public class Input {
         return sc.nextLine();
     }
 
+
+    /**
+     * Reads a string and checks if it has a specific lenght
+     * @param lenght lenght of input
+     * @return input with configured length
+     */
+    public String readLengthString(int lenght) {
+        while (true) {
+            try {
+                String input = sc.nextLine();
+                if (input.length() == lenght) {
+                    return input;
+                } else throw new MinorAgeException();
+            } catch (MinorAgeException e) {
+                Controller.Print.printError("This isn't a valid option");
+            }
+        }
+    }
+
+    /**
+     * Reads a string and checks if it has a specific lenght
+     * @param prompt prompt to print bevor input is taken
+     * @param lenght lenght of input
+     * @return input with configured length
+     */
+    public String readLengthString(int lenght, String prompt) {
+        while (true) {
+            try {
+                Controller.Print.print(prompt);
+                String input = sc.nextLine();
+                if (input.length() == lenght) {
+                    return input;
+                } else throw new MinorAgeException();
+            } catch (MinorAgeException e) {
+                Controller.Print.printError("This isn't a valid option");
+            }
+        }
+    }
+
+
+    /**
+     * Reads an input and checks if it is part of a list.
+     * @param list list to check
+     * @return valid list option
+     */
+    public String readList(String[] list) {
+        while (true) {
+            printList(list);
+            String input = sc.nextLine();
+            for (String s : list) {
+                if (input.equalsIgnoreCase(s)) {
+                    return s;
+                }
+            }
+            Controller.Print.printError("This isn't a valid option");
+        }
+    }
+
+    /**
+     * Reads an input and checks if it is part of a list.
+     * @param prompt Promt to print bevore the input
+     * @param list list to check
+     * @return valid list option
+     */
+    public String readList(String prompt, String[] list) {
+        while (true) {
+            Controller.Print.print(prompt);
+            printList(list);
+            String input = sc.nextLine();
+            for (String s : list) {
+                if (input.equalsIgnoreCase(s)) {
+                    return s;
+                }
+            }
+            Controller.Print.printError("This isn't a valid option");
+        }
+    }
+
+
+    private void printList(String[] list) {
+        Controller.Print.print("(");
+        for (int i = 0; i < list.length; i++) {
+            if (i == list.length -1) {
+                Controller.Print.print(list[i]);
+            } else {
+                Controller.Print.print(list[i] + ", ");
+            }
+        }
+        Controller.Print.print("): ");
+    }
 
     /**
      * reads in a hidden password
@@ -163,7 +255,7 @@ public class Input {
      * @return valid LocalDate
      */
     public LocalDate readDate() {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.mm.yyyy");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         while (true) {
             try {
                 print.print("(dd.mm.yyyy): ");
@@ -213,7 +305,6 @@ public class Input {
             }
         }
     }
-
 
     /**
      * Reads input until the input is a valid Integer. If one String is attached
